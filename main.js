@@ -3,7 +3,7 @@ ctx=canvas.getContext("2d");
 mouseEvent="";
 var lastPositionOfX,lastPositionOfY;
 colour="Black";
-widthOfLine=1;
+widthOfLine=3;
 canvas.addEventListener("mousedown",mymousedown);
 function mymousedown(e){
 mouseEvent="mousedown";
@@ -36,6 +36,23 @@ if(mouseEvent=="mousedown")
 lastPositionOfX=currentpofX;
 lastPositionOfY=currentpofY;
 }
-
+canvas.addEventListener("touchstart",my_touchstart);
+function my_touchstart(e){
+console.log("mytouchstart");
+lastPositionOfX=e.touches[0].clientX-canvas.offsetLeft;
+lastPositionOfY=e.touches[0].clientY-canvas.offsetTop;
+}
+canvas.addEventListener("touchmove",my_touchmove);
+function my_touchmove(e){
+    console.log("my_touchmove")
+    currentpofX=e.touches[0].clientX-canvas.offsetLeft;
+    currentpofY=e.touches[0].clientY-canvas.offsetTop;
+    ctx.beginPath();
+    ctx.strokeStyle=colour;
+    ctx.lineWidth=widthOfLine;
+    ctx.moveTo(lastPositionOfY,lastPositionOfX);
+    ctx.lineTo(currentpofY,currentpofX);
+    ctx.stroke();
+}
 function clearing(){
     ctx.clearRect(0,0,canvas.width,canvas.height);}
