@@ -53,6 +53,9 @@ function my_touchmove(e){
     ctx.moveTo(lastPositionOfY,lastPositionOfX);
     ctx.lineTo(currentpofY,currentpofX);
     ctx.stroke();
+    lastPositionOfX=currentpofX;
+lastPositionOfY=currentpofY;
 }
+
 function clearing(){
     ctx.clearRect(0,0,canvas.width,canvas.height);}
